@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 import requests
 from bs4 import BeautifulSoup
@@ -40,11 +41,14 @@ def get_first_news():
         json.dump(news_dict, file, indent=4, ensure_ascii=False)
 
 
-def update_news():
+def update_news_01():
     with open('json_file/5692_news_dict.json') as file:
         news_dict = json.load(file)
 
     fresh_news = {}
+
+    date = datetime.now()
+    day = f"{date.strftime('%d')}.{date.strftime('%m')}.{date.strftime('%Y')}"
 
     for items_news in url_headers():
         url_news = items_news.find('a', class_='c-news-block__title').get('href')
@@ -54,7 +58,7 @@ def update_news():
             continue
         else:
             title_news = items_news.find('a', class_='c-news-block__title').text
-            time_news = items_news.find('span', class_='c-article-info__when').text
+            time_news = day
             description_news = items_news.find('div', class_='c-news-block__text').text
 
             news_dict[id_news] = {
@@ -81,4 +85,4 @@ def update_news():
 
 
 if __name__ == '__main__':
-    update_news()
+    update_news_01()

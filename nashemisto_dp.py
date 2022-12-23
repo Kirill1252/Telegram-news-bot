@@ -37,7 +37,7 @@ def get_first_news():
         json.dump(news_dict, file, indent=4, ensure_ascii=False)
 
 
-def update_news():
+def update_news_02():
     with open('json_file/nashemisto_dp_news_dict.json') as file:
         news_dict = json.load(file)
 
@@ -74,4 +74,4 @@ def update_news():
 
 
 if __name__ == '__main__':
-    update_news()
+    update_news_02()

@@ -23,4 +23,3 @@ def get_weather(city):
 
     except Exception as ex:
         return f'{ex}: Неверное название города'
-
